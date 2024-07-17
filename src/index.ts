@@ -1,41 +1,22 @@
 import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import { decode, sign, verify } from 'hono/jwt'
+import { userRouter } from './routes/user'
+import { postRouter } from './routes/posts'
+
 
 const app = new Hono<{
   // typescript doesn't know the anthing about wrangler env so we have to explicitly define its type
   Bindings: {
     DATABASE_URL: string,
+    JWT_SECRET: string,
   }
 }>()
 
+app.route("/api/v1/user", userRouter);
+app.route("/api/v1/post", postRouter);
 
-app.post('/api/v1/user/signup', (c) => {
-  const prisma = new PrismaClient({
-    datasourceUrl: c.env.DATABASE_URL,
-  }).$extends(withAccelerate())
-  return c.text('Hello World!')
-})
-
-app.post('/api/v1/user/signin', (c) => {
-  return c.text('Hello World!')
-})
-
-app.post('/api/v1/blog', (c) => {
-  return c.text('Hello World!')
-})
-
-app.put('/api/v1/blog', (c) => {
-  return c.text('Hello World!')
-})
-
-app.get('/api/v1/blog', (c) => {
-  return c.text('Hello World!')
-})
-
-app.get('/api/v1/blog/bulk', (c) => {
-  return c.text('Hello World!')
-})
 
 export default app
 
