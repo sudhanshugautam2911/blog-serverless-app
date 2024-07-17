@@ -2,7 +2,12 @@ import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
-const app = new Hono()
+const app = new Hono<{
+  // typescript doesn't know the anthing about wrangler env so we have to explicitly define its type
+  Bindings: {
+    DATABASE_URL: string,
+  }
+}>()
 
 
 app.post('/api/v1/user/signup', (c) => {
