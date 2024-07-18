@@ -1,7 +1,9 @@
 import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { decode, sign, verify } from 'hono/jwt'
+import { sign } from 'hono/jwt'
+import { signInInput, signUpInput } from '@sudhanshugau12/blog-common'
+
 
 export const userRouter = new Hono<{
     // typescript doesn't know the anthing about wrangler env so we have to explicitly define its type
@@ -20,7 +22,14 @@ userRouter.post('/signup', async (c) => {
 
     // main code
     const body = await c.req.json();
-    // zod , password hash
+    const { success } = signUpInput.safeParse(body);
+    if(!success) {
+        c.status(411);
+        return c.json({
+            message: "Inputs not correct"
+        })
+    }
+    // password hash
     try {
         const user = await prisma.user.create({
             data: {
@@ -52,6 +61,13 @@ userRouter.post('/signin', async (c) => {
 
     // main code
     const body = await c.req.json();
+    const { success } = signInInput.safeParse(body);
+    if(!success) {
+        c.status(411);
+        return c.json({
+            message: "Inputs not correct"
+        })
+    }
     try {
         const user = await prisma.user.findFirst({
             where: {
