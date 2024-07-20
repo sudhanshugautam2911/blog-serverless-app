@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://hono-app.gautamsudhanshu2911.workers.dev"

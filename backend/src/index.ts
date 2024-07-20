@@ -4,7 +4,7 @@ import { withAccelerate } from '@prisma/extension-accelerate'
 import { decode, sign, verify } from 'hono/jwt'
 import { userRouter } from './routes/user'
 import { postRouter } from './routes/posts'
-
+import { cors } from 'hono/cors'
 
 const app = new Hono<{
   // typescript doesn't know the anthing about wrangler env so we have to explicitly define its type
@@ -13,6 +13,7 @@ const app = new Hono<{
     JWT_SECRET: string,
   }
 }>()
+app.use('/*', cors())
 
 app.route("/api/v1/user", userRouter);
 app.route("/api/v1/post", postRouter);

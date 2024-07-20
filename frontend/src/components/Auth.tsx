@@ -1,10 +1,12 @@
 import signinStyles from '../pages/Signin.module.css'
 import { useState } from 'react'
 import { SigninInput, SignupInput } from '@sudhanshugau12/blog-common'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import {BACKEND_URL} from '../config'
 
 export const Auth = ({ type }: { type: "signin" | "signup" }) => {
+  const navigate = useNavigate();
   const [postInputs, setPostInputs] = useState<SigninInput | SignupInput>({
     username: "",
     password: "",
@@ -12,11 +14,26 @@ export const Auth = ({ type }: { type: "signin" | "signup" }) => {
   })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setPostInputs(prevState => ({
+    setPostInputs(prevState => ({ 
       ...prevState,
       [name]: value
     }));
   };
+
+  async function handleSubmitAuth(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      console.log("Hi : ", type);
+      const res = await axios.post(`${BACKEND_URL}/api/v1/user/${type}`, postInputs)
+      const jwt = res.data;
+      localStorage.setItem("token", jwt);
+      navigate("/blogs")
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
   return (
     <div className={signinStyles.formContainer}>
       <div className={signinStyles.header}>
@@ -35,7 +52,7 @@ export const Auth = ({ type }: { type: "signin" | "signup" }) => {
             </Link>
           </p>}
       </div>
-      <form>
+      <form onSubmit={handleSubmitAuth}>
         {type === "signup" &&
           <LabelledInput
             label="Name"
