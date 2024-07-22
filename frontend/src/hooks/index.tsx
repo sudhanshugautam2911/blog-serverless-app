@@ -57,7 +57,7 @@ export const useBlogs = () => {
             }
             catch (err) {
                 console.error('Error fetching data:', err);
-            }finally {
+            } finally {
                 setLoading(false);
             }
         }
@@ -67,5 +67,4 @@ export const useBlogs = () => {
     return (
         { loading, blogs }
     )
-
 }
