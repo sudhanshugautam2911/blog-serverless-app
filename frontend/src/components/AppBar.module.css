@@ -9,5 +9,26 @@
 
 .heading {
     cursor: pointer;
-
 }
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.uploadBtn {
+    margin-right: 15px;
+    color: white;
+    background-color: #1A8917;
+    border: none;
+    padding: 8px 12px;    
+    border-radius: 15px;
+    cursor: pointer;
+}
+.Linktag {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+

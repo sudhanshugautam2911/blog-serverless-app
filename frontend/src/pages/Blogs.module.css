@@ -4,4 +4,13 @@
     justify-content: center;
     max-width: 42rem;
     margin: auto; 
+    
+}
+
+.loadingScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }

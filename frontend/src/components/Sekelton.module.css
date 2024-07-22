@@ -1,0 +1,58 @@
+.loadingContainer {
+    /* max-width: 360px; */
+    margin: 20px;
+    margin-bottom: 30px;
+}
+
+.loadingContainer div {
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 9999px;
+    margin-bottom: 10px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loadingTitle {
+    width: 150px;
+    height: 20px;
+    margin-bottom: 16px;
+}
+.loadingContentMini {
+    width: 150px;
+    height: 20px;
+    margin-bottom: 16px;
+}
+
+.loadingBar1 {
+    width: 100px;
+}
+
+.loadingBarContent {
+    width: 450px;
+}
+
+.loadingTime {
+    width: 100px;
+}
+
+.detailedContent {
+    width: 500px;
+    margin-top: 25px;
+}
+.loadingContentMini {
+    width: 250px;
+    height: 20px;
+    margin-bottom: 16px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

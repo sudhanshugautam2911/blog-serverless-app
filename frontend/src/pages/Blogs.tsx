@@ -1,23 +1,31 @@
 import { AppBar } from "../components/AppBar"
 import { BlogsCard } from "../components/BlogsCard"
+import { Sekelton } from "../components/Sekelton"
 import { useBlogs } from "../hooks"
 import styles from './Blogs.module.css'
 
 export const Blogs = () => {
-    const {loading, blogs} = useBlogs();
-    if(loading) {
-        return <div>
-            Loading...
+    const { loading, blogs } = useBlogs();
+    if (loading) {
+        return <div >
+            <AppBar />
+            <div className={styles.loadingScreen}>
+                <Sekelton />
+                <Sekelton />
+                <Sekelton />
+                <Sekelton />
+                <Sekelton />
+            </div>
         </div>
     }
-    
+
     return (
         <div>
-            <AppBar/>
+            <AppBar />
             <div className={styles.mainBlogs}>
                 <div>
                     {
-                        blogs.map(blog=> (
+                        blogs.map(blog => (
                             <BlogsCard
                                 key={blog.id}
                                 id={blog.id}

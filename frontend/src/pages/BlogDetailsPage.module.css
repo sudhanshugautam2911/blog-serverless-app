@@ -1,0 +1,19 @@
+
+
+.loadingScreen {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding: 0 40px;
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+.left {
+    grid-column: span 8;
+}
+.right {
+    grid-column: span 4;
+}
