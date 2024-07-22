@@ -1,6 +1,6 @@
 import { AppBar } from "../components/AppBar"
 import { BlogsCard } from "../components/BlogsCard"
-import { Sekelton } from "../components/Sekelton"
+import { Skeleton } from "../components/Skeleton"
 import { useBlogs } from "../hooks"
 import styles from './Blogs.module.css'
 
@@ -10,11 +10,11 @@ export const Blogs = () => {
         return <div >
             <AppBar />
             <div className={styles.loadingScreen}>
-                <Sekelton />
-                <Sekelton />
-                <Sekelton />
-                <Sekelton />
-                <Sekelton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
             </div>
         </div>
     }

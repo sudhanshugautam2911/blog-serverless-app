@@ -1,6 +1,6 @@
-import styles from './Sekelton.module.css'
+import styles from './Skeleton.module.css'
 
-export const Sekelton = () => {
+export const Skeleton = () => {
     return (
         <div className={styles.loadingContainer}>
             <article >
@@ -18,7 +18,7 @@ export const Sekelton = () => {
     )
 }
 
-export const SekeltonDetailed = () => {
+export const SkeletonDetailed = () => {
     return (
         <div className={styles.loadingContainer}>
             <article >

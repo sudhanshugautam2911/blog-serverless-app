@@ -3,7 +3,7 @@ import { useBlog } from "../hooks";
 import { BlogDetail } from "../components/BlogDetail";
 import { AppBar } from "../components/AppBar";
 import styles from './BlogDetailsPage.module.css'
-import { Sekelton, SekeltonDetailed } from "../components/Sekelton";
+import { Skeleton, SkeletonDetailed } from "../components/Skeleton";
 
 export const BlogDetailsPage = () => {
   const params = useParams();
@@ -17,10 +17,10 @@ export const BlogDetailsPage = () => {
         <AppBar />
         <div className={styles.loadingScreen}>
           <div className={styles.left}>
-            <SekeltonDetailed/>
+            <SkeletonDetailed/>
           </div>
           <div className={styles.right}>
-          <Sekelton/>
+          <Skeleton/>
             
           </div>
         </div>
